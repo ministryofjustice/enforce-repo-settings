@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# Script to force github repositories to comply with our team-wide standards
+# for how those should be configured.
+
+require "json"
+require "net/http"
+require "uri"
+require "pry-byebug"
+
+require_relative "../lib/github_graph_ql_client"
+require_relative "../lib/repository"
+
+Repository.new(
+  github_token: ENV.fetch("GITHUB_TOKEN"),
+  organization: "ministryofjustice",
+  name: "repo-settings-test"
+).enforce_settings
