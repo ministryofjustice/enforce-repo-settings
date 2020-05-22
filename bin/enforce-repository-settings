@@ -6,13 +6,14 @@
 require "json"
 require "net/http"
 require "uri"
-require "pry-byebug"
 
 require_relative "../lib/github_graph_ql_client"
 require_relative "../lib/repository"
 
+organization, repo = ARGV
+
 Repository.new(
   github_token: ENV.fetch("GITHUB_TOKEN"),
-  organization: "ministryofjustice",
-  name: "repo-settings-test"
+  organization: organization,
+  name: repo,
 ).enforce_settings
