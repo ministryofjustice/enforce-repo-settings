@@ -11,7 +11,7 @@ class Repository < GithubGraphQlClient
 
   def enforce_settings
     setup_branch_protection
-    update_repository
+    apply_repository_settings
   end
 
   private
@@ -26,7 +26,7 @@ class Repository < GithubGraphQlClient
     create_branch_protection_rule
   end
 
-  def update_repository
+  def apply_repository_settings
     mutation = %[
       mutation UpdateRepositorySettings {
         updateRepository(input: {
