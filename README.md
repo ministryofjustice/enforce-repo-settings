@@ -9,6 +9,19 @@ A `GITHUB_TOKEN` environment variable whose value is a GitHub [personal access
 token](https://github.com/settings/tokens) with at least `repo` scope, and
 SSO-enabled if appropriate.
 
+## Running
+
+First, set your `GITHUB_TOKEN` environment variable.
+
+Get the correct (latest) version number from the makefile, and edit the
+following command accordingly, filling in the relevant `[repo name]`:
+
+```bash
+docker run --rm \
+  -e GITHUB_TOKEN=${GITHUB_TOKEN} \
+  ministryofjustice/enforce-repository-settings:1.0 ministryofjustice [repo name]
+```
+
 ## Granting team admin permissions
 
 It would be good to take a team name, and grant that team `admin` on the repo.
