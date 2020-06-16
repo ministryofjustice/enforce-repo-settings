@@ -2,6 +2,7 @@ class Repository < GithubGraphQlClient
   attr_reader :organization, :name
 
   MASTER = "master"
+  MAIN = "main"
 
   def initialize(params)
     @organization = params.fetch(:organization)
@@ -17,10 +18,14 @@ class Repository < GithubGraphQlClient
   private
 
   def setup_branch_protection
-    # it's easier to delete master branch protection and then set it up again,
+    # it's easier to delete branch protection and then set it up again,
     # than to try and modify it in place
     branch_protection_rules
       .filter { |rule| rule["pattern"] == MASTER }
+      .each { |rule| delete_branch_protection_rule(rule["id"]) }
+
+    branch_protection_rules
+      .filter { |rule| rule["pattern"] == MAIN }
       .each { |rule| delete_branch_protection_rule(rule["id"]) }
 
     create_branch_protection_rule
@@ -64,7 +69,7 @@ class Repository < GithubGraphQlClient
           repositoryId: "#{id}",
           dismissesStaleReviews: true,
           isAdminEnforced:true,
-          pattern: "#{MASTER}",
+          pattern: "#{MAIN}",
           requiresApprovingReviews: true,
           requiresCodeOwnerReviews: true,
           requiredApprovingReviewCount: 1,
