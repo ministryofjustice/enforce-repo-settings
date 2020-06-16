@@ -10,6 +10,7 @@ require "uri"
 require_relative "../lib/github_graph_ql_client"
 require_relative "../lib/repository"
 
+# e.g. "ministryofjustice cloud-platform-environments"
 organization, repo = ARGV
 
 Repository.new(
