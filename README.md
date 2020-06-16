@@ -9,12 +9,17 @@ A `GITHUB_TOKEN` environment variable whose value is a GitHub [personal access
 token](https://github.com/settings/tokens) with at least `repo` scope, and
 SSO-enabled if appropriate.
 
+## Updating
+
+A github action is used to build a docker image from this project, and publish
+it to [docker hub]. To trigger this process, create a new [release]
+
 ## Running
 
 First, set your `GITHUB_TOKEN` environment variable.
 
-Get the correct (latest) version number from the makefile, and edit the
-following command accordingly, filling in the relevant `[repo name]`:
+Get the correct (latest) [release] number, and edit the following command
+accordingly, filling in the relevant `[repo name]`:
 
 ```bash
 docker run --rm \
@@ -50,3 +55,6 @@ If you do want to do this:
     @client ||= Octokit::Client.new(access_token: github_token)
   end
 ```
+
+[docker hub]: https://hub.docker.com/repository/docker/ministryofjustice/enforce-repository-settings
+[release]: https://github.com/ministryofjustice/enforce-repo-settings/releases
