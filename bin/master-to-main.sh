@@ -31,8 +31,6 @@ git push -u origin main
 repo=$(basename $(pwd))
 hub api repos/ministryofjustice/${repo} -X PATCH -F default_branch="main" > /dev/null
 
-echo "herre..................."
-
 # Apply branch protection to `main`
 docker run --rm \
   -e GITHUB_TOKEN=${GITHUB_TOKEN} \
