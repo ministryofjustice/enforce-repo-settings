@@ -16,8 +16,6 @@
 
 set -eu
 
-ENFORCE_SETTINGS_CHECKOUT=~/Projects/moj/enforce-repo-settings
-
 # Ensure we are up to date on master
 git checkout master
 git pull
